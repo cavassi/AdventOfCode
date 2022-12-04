@@ -10,18 +10,17 @@ sum = 0
 for i in range(len(line)):
     line[i][0] = line[i][0].split("-")
     line[i][1] = line[i][1].split("-")
-
-print(line)
+    
 equals = 0
 
 for i in range(len(line)):
-    if line[i][0][0] <= line[i][-1][0] and line[i][0][-1] >= line[i][-1][-1]:
+    if int(line[i][0][0]) <= int(line[i][-1][0]) and int(line[i][0][-1]) >= int(line[i][-1][-1]):
         sum += 1
-    if line[i][0][0] == line[i][-1][0] and line[i][0][-1] == line[i][-1][-1]:
-        equals += 1
     
 for i in range(len(line)):
-    if line[i][-1][0] <= line[i][0][0] and line[i][-1][-1] >= line[i][0][-1]:
+    if int(line[i][-1][0]) <= int(line[i][0][0]) and int(line[i][-1][-1]) >= int(line[i][0][-1]):
         sum += 1
+    if int(line[i][0][0]) == int(line[i][-1][0]) and int(line[i][0][-1]) == int(line[i][-1][-1]):
+        equals += 1
 
 print(sum-equals)
