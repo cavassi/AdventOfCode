@@ -23,5 +23,5 @@ for elf in line:
     list_of_elfs.append(current_value)
 
 list_of_elfs.sort()
-
+# dsd
 print(list_of_elfs[-3] + list_of_elfs[-2] + list_of_elfs[-1])
