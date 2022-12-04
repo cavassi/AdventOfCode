@@ -1,3 +1,5 @@
+import numpy as np
+
 with open('data.txt', 'r') as file:
     line = file.read()
 
