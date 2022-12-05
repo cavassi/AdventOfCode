@@ -1,4 +1,4 @@
-with open('Day 3/data.txt', 'r') as file:
+with open('day3/data.txt', 'r') as file:
     line = file.read()
 
 rucksack = line.rstrip().split("\n")

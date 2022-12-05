@@ -1,4 +1,4 @@
-with open('Day 4/data.txt', 'r') as file:
+with open('day4/data.txt', 'r') as file:
     line = file.read()
 
 line = line.split("\n")
