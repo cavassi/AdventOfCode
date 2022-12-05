@@ -34,4 +34,3 @@ str = ""
 for i in range(1, len(stack)):
     str += stack[i][-1]
 print(str)
-

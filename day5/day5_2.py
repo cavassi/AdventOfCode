@@ -21,11 +21,6 @@ stack = [[],
         ["R", "J", "Q", "G", "C"],
         ["L", "D", "T", "R", "H", "P", "F", "S"]]
 
-# stack = [["A"],
-#         ["Z", "N"],
-#         ["M", "C", "D"],
-#         ["P"]]
-
 for i in range(len(line)):
     amount_to_move = int(line[i][0])
     move_from_stack = int(line[i][1])
@@ -42,4 +37,3 @@ str = ""
 for i in range(1, len(stack)):
     str += stack[i][-1]
 print(str)
-
