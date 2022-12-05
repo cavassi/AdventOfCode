@@ -10,6 +10,7 @@ for i in range(len(line)):
     line[i] = line[i].replace(' to ', " ")
     line[i] = line[i].split(" ")
 
+print(line)
 stack = [[],
         ["H", "C", "R"], 
         ["B", "J", "H", "L", "S", "F"], 
@@ -26,7 +27,7 @@ for i in range(len(line)):
     move_from_stack = int(line[i][1])
     move_to_stack = int(line[i][2])
 
-    for i in range(amount_to_move):
+    for j in range(amount_to_move):
         stack[move_to_stack].append(stack[move_from_stack][-1]) 
         stack[move_from_stack].pop()
 str = ""
