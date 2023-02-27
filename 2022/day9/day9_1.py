@@ -32,7 +32,7 @@ for i in range(len(data)):
 #     print(list_of_directions[i])
 
 for i in range(len(list_of_directions)):
-    s.add((tail[0], tail[1]))
+
     
     #HEAD MOVES
     if list_of_directions[i] == "R":
@@ -43,9 +43,9 @@ for i in range(len(list_of_directions)):
         head[0] -= 1
     if list_of_directions[i] == "D":
         head[1] -= 1
-
     # IN RANGE 1
     if head[0]-tail[0] in range(-1, 2) and head[1]-tail[1] in range(-1, 2):
+        s.add((tail[0], tail[1]))
         continue
 
     #TAIL MOVES
@@ -53,33 +53,41 @@ for i in range(len(list_of_directions)):
     # 2 BLOCKS IN SAME DIRECTION
     if head[0]-tail[0] == 2 and head[1]-tail[1] == 0:
         tail[0] += 1
+        s.add((tail[0], tail[1]))
         continue
     if head[1]-tail[1] == 2 and head[0]-tail[0] == 0:
         tail[1] += 1
+        s.add((tail[0], tail[1]))
         continue
     if head[0]-tail[0] == -2 and head[1]-tail[1] == 0:
         tail[0] -= 1
+        s.add((tail[0], tail[1]))
         continue
     if head[1]-tail[1] == -2 and head[1]-tail[1] == 0:
         tail[0] -= 1
+        s.add((tail[0], tail[1]))
         continue
     
     #HORSE MOVE
     if head[0]-tail[0] >= 1 and head[1]-tail[1] >= 1:
         tail[0] += 1
         tail[1] += 1
+        s.add((tail[0], tail[1]))
         continue
     if head[0]-tail[0] >= 0 and head[1]-tail[1] <= 0:
         tail[0] += 1
         tail[1] -= 1
+        s.add((tail[0], tail[1]))
         continue
     if head[0]-tail[0] <= 0 and head[1]-tail[1] >= 0:
         tail[0] -= 1
         tail[1] += 1
+        s.add((tail[0], tail[1]))
         continue
     if head[0]-tail[0] <= 0 and head[1]-tail[1] <= 0:
         tail[0] -= 1
         tail[1] -= 1
+        s.add((tail[0], tail[1]))
         continue
 # print(sorted(s))
 print(len(s))
