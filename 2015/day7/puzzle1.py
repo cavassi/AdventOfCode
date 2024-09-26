@@ -1,3 +1,5 @@
+import copy
+
 with open("2015/day7/data.txt", "r") as data:
     data = data.read()
 
@@ -6,6 +8,8 @@ data = data.split("\n")
 for i in range(len(data)):
     data[i] = data[i].split(" ")
     data[i].remove("->")
+
+data_copy = copy.deepcopy(data)
 
 wire_dict = dict()
 
@@ -48,35 +52,69 @@ def AND(line):
     result = value1 & value2
     return result
 
-while len(data) > 1:
-    for line in data:
-        if len(line) == 2 and (line[0].isdigit() or line[0] in wire_dict):
-            wire_dict[line[1]] = int(line[0])
-            data.pop(data.index(line))
+def find_a(data):
+    while len(data) > 0:
+        for line in data:
+            if len(line) == 2 and (line[0].isdigit() or line[0] in wire_dict):
+                wire_dict[line[1]] = get_value(line[0])
+                data.pop(data.index(line))
+                continue
 
-        if line[0] == "NOT" and line[1] in wire_dict:
-            not_number = NOT(line)
-            wire_dict[line[2]] = not_number
-            data.pop(data.index(line))
+            if line[0] == "NOT" and line[1] in wire_dict:
+                not_number = NOT(line)
+                wire_dict[line[2]] = not_number
+                data.pop(data.index(line))
+                continue
 
-        if line[0] in wire_dict and line[1] == "RSHIFT":
-            rshift_number = RSHIFT(line)
-            wire_dict[line[3]] = rshift_number
-            data.pop(data.index(line))
+            if line[0] in wire_dict and line[1] == "RSHIFT":
+                rshift_number = RSHIFT(line)
+                wire_dict[line[3]] = rshift_number
+                data.pop(data.index(line))
+                continue
 
-        if line[0] in wire_dict and line[1] == "LSHIFT":
-            lshift_number = LSHIFT(line)
-            wire_dict[line[3]] = lshift_number
-            data.pop(data.index(line))
+            if line[0] in wire_dict and line[1] == "LSHIFT":
+                lshift_number = LSHIFT(line)
+                wire_dict[line[3]] = lshift_number
+                data.pop(data.index(line))
+                continue
 
-        if line[0] in wire_dict and line[1] == "OR" and line[2] in wire_dict:
-            or_number = OR(line)
-            wire_dict[line[3]] = or_number
-            data.pop(data.index(line))
+            if line[0] in wire_dict and line[1] == "OR" and line[2] in wire_dict:
+                or_number = OR(line)
+                wire_dict[line[3]] = or_number
+                data.pop(data.index(line))
+                continue
 
-        if (line[0] in wire_dict or line[0].isdigit()) and line[1] == "AND" and (line[2] in wire_dict or line[2].isdigit()):
-            and_number = AND(line)
-            wire_dict[line[3]] = and_number
-            data.pop(data.index(line))          
+            if (line[0] in wire_dict or line[0].isdigit()) and line[1] == "AND" and (line[2] in wire_dict or line[2].isdigit()):
+                and_number = AND(line)
+                wire_dict[line[3]] = and_number
+                data.pop(data.index(line))
+                continue
 
-print(wire_dict[data[0][0]])
+        print("Current wire_dict:", wire_dict)
+        print("Remaining data:", data)
+
+# Run the find_a function on the original data
+find_a(data)
+
+# Check if 'a' is in wire_dict
+if 'a' in wire_dict:
+    a = wire_dict['a']
+    print("Value of 'a':", a)
+else:
+    print("Key 'a' not found in wire_dict after first run.")
+    exit(1)
+
+# Update the value of 'b' to the value of 'a' in the data_copy
+for line in data_copy:
+    if line[-1] == "b":
+        line[0] = str(a)
+
+# Clear the wire_dict and run the find_a function again with the updated data_copy
+wire_dict.clear()
+find_a(data_copy)
+
+# Print the value of 'a' after the second run
+if 'a' in wire_dict:
+    print("Value of 'a' after second run:", wire_dict['a'])
+else:
+    print("Key 'a' not found in wire_dict after second run.")
