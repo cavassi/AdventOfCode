@@ -1,5 +1,5 @@
-data = "d1/data.txt"
-test = "test.txt"
+data = "2024/d1/data.txt"
+test = "2024/d1/test.txt"
 
 left_list = []
 right_list = []

@@ -1,5 +1,5 @@
-input = "d2/data.txt"
-test = "d2/test.txt"
+input = "2024/d2/data.txt"
+test = "2024/d2/test.txt"
 
 reports = []
 safe_reports = 0
