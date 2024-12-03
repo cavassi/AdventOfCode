@@ -1,5 +1,5 @@
-input = "2024/d2/data.txt"
-test = "2024/d2/test.txt"
+input = "2024/d02/data.txt"
+test = "2024/d02/test.txt"
 
 reports = []
 safe_reports = 0
@@ -24,7 +24,19 @@ def is_safe(report):
     return 1
 
 
-for line in reports:
-    safe_reports += is_safe(line)
+for report in reports:
+
+    if is_safe(report):
+        safe_reports += 1
+        continue
+
+    for index, level in enumerate(report):
+        report_copy = report.copy()
+        report_copy.pop(index)
+        safety = is_safe(report_copy)
+
+        if safety:
+            safe_reports += 1
+            break
 
 print(safe_reports)
